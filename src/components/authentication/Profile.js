@@ -17,7 +17,7 @@ export default function Profile() {
             await logout()
             history.push('/login')
         }catch{
-            setError('Failed to log oout')
+            setError('Failed to log out')
         }
 
     }
