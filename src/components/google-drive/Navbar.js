@@ -10,7 +10,7 @@ function NavbarComponent() {
         <Navbar bg = 'primary' variant = 'light' expand='sm'>
 
             <Navbar.Brand as={Link} to="/">
-                UG2 Drive test Dejan
+                UG2 Google drive Clone
             </Navbar.Brand>
             <Nav>
                 <Nav.Link as={Link} to='/user' >

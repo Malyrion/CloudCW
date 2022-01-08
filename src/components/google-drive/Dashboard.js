@@ -22,6 +22,7 @@ function Dashboard() {
             <FolderBreadcrumbs currentFolder={folder} />
             <AddFileButton currentFolder={folder} />
             <AddFolderButton currentFolder={folder} />
+            {/* //Show the child folders */}
           </div>
           {childFolders.length > 0 && (
             <div className="d-flex flex-wrap">
@@ -37,6 +38,7 @@ function Dashboard() {
             </div>
             
           )}
+          {/* Show the files  */}
             {childFolders.length > 0 && childFiles.length > 0 && <hr />}
         {childFiles.length > 0 && (
           <div className="d-flex flex-wrap">

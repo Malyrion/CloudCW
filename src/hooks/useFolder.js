@@ -9,10 +9,13 @@ const ACTIONS = {
   SET_CHILD_FILES: "set-child-files",
 }
 
+//Tracking the state of our components
+//Empty folder acting as a root folder
 export const ROOT_FOLDER = { name: "Root", id: null, path: [] }
 
 function reducer(state, { type, payload }) {
   switch (type) {
+//based on the type we pass it selects wich state to return
     case ACTIONS.SELECT_FOLDER:
       return {
         folderId: payload.folderId,
@@ -40,7 +43,10 @@ function reducer(state, { type, payload }) {
   }
 }
 
+
+
 export function useFolder(folderId = null, folder = null) {
+      //default states and set them to null
   const [state, dispatch] = useReducer(reducer, {
     folderId,
     folder,
@@ -49,11 +55,13 @@ export function useFolder(folderId = null, folder = null) {
   })
   const { currentUser } = useAuth()
 
+  //invoke the reducer above that use the type specified above and a payload of variables
   useEffect(() => {
     dispatch({ type: ACTIONS.SELECT_FOLDER, payload: { folderId, folder } })
   }, [folderId, folder])
 
   useEffect(() => {
+    //check for root folder
     if (folderId == null) {
       return dispatch({
         type: ACTIONS.UPDATE_FOLDER,

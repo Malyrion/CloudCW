@@ -2,6 +2,7 @@ import React from 'react'
 import {Container} from 'react-bootstrap'
 
 function CenteredContainer({children}) {
+    //Centeres anything you put in
     return (
         <Container
         className="d-flex align-items-center justify-content-center"
