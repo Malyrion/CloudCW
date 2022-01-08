@@ -31,6 +31,7 @@ export default function Profile() {
                     {error && <Alert variant="danger">{error}</Alert>}
                     <strong>Email: </strong> {currentUser.email}
                     <Link to='update-profile' className='btn btn-primary w-100 mt-3'>Update Profile</Link>
+                    <Link to='/' className='btn btn-primary w-100 mt-3'>Dashborad</Link>
                 </Card.Body>
             </Card>
            

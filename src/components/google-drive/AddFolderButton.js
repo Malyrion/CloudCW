@@ -5,6 +5,7 @@ import {faFolderPlus} from "@fortawesome/free-solid-svg-icons"
 import {database} from '../../firebase'
 import {useAuth} from '../../context/AuthContext'
 import { ROOT_FOLDER } from '../../hooks/useFolder'
+import {faFolderOpen} from "@fortawesome/free-solid-svg-icons/faFolderOpen";
 
 
 function AddFolderButton({currentFolder}) {
@@ -46,8 +47,8 @@ function AddFolderButton({currentFolder}) {
 
     return (
         <>
-        <Button onClick={openModal} variant='outline-success' size='sm'> 
-        <FontAwesomeIcon icon={faFolderPlus}></FontAwesomeIcon>
+        <Button onClick={openModal} variant='outline-primary' size='lg'>
+        <FontAwesomeIcon icon={faFolderOpen}></FontAwesomeIcon>
             
         </Button>
         <Modal show={open} onHide={closeModal}>
@@ -63,8 +64,8 @@ function AddFolderButton({currentFolder}) {
                     </Form.Group>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={closeModal}>Close</Button>
-                    <Button varriant='success' type="submit">Add Folder</Button>
+                    <Button variant="primary" onClick={closeModal}>Close</Button>
+                    <Button varriant='primary' type="submit">Add Folder</Button>
                 </Modal.Footer>
             </Form>
         </Modal>

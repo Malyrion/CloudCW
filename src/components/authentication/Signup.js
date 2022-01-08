@@ -5,6 +5,9 @@ import { Link, useHistory } from "react-router-dom"
 import CenteredContainer from "./CenteredContainer"
 
 export default function Signup() {
+
+  //constant variables for the form fields 
+  //useRef can pass the current value of the variable therfore we use it in the forms
   const emailRef = useRef()
   const passwordRef = useRef()
   const passwordConfirmRef = useRef()
@@ -13,15 +16,19 @@ export default function Signup() {
   const [loading, setLoading] = useState(false)
   const history = useHistory()
 
+  //function that will be invoced when we click the button 
   async function handleSubmit(e) {
+    //prevents the default button operation
     e.preventDefault()
-
+    //check that the password matches in both fields
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
       return setError("Passwords do not match")
     }
-
+    //we remove any previous errors and try use the method defined @AuthContext passing the the emial and password
+    //and go to the next page
     try {
       setError("")
+      //prevent spam of submitt button
       setLoading(true)
       await signup(emailRef.current.value, passwordRef.current.value)
       history.push("/")
@@ -33,6 +40,8 @@ export default function Signup() {
   }
 
   return (
+    //Using bootstrap to create a login container, saves use of css 
+    //more at https://getbootstrap.com/docs/4.0/components/forms/
     <CenteredContainer>
       <Card>
         <Card.Body>
