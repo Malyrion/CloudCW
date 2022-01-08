@@ -17,23 +17,27 @@ export default function AddFileButton({ currentFolder }) {
     const file = e.target.files[0]
     if (currentFolder == null || file == null) return
 
+    //Get the current Id ouf our user
     const id = uuidV4()
     setUploadingFiles(prevUploadingFiles => [
       ...prevUploadingFiles,
       { id: id, name: file.name, progress: 0, error: false },
     ])
+    //Concatonate file paths and file name at the end
     const filePath =
       currentFolder === ROOT_FOLDER
         ? `${currentFolder.path.join("/")}/${file.name}`
         : `${currentFolder.path.join("/")}/${currentFolder.name}/${file.name}`
 
+    //specify location were we want to upload our file
     const uploadTask = storage
       .ref(`/files/${currentUser.uid}/${filePath}`)
       .put(file)
 
+      //Once we uploaded in our storage we upload in to firebase database (gets the file from storage and saves the link)
     uploadTask.on(
       "state_changed",
-      snapshot => {
+      snapshot => { //upload progress
         const progress = snapshot.bytesTransferred / snapshot.totalBytes
         setUploadingFiles(prevUploadingFiles => {
           return prevUploadingFiles.map(uploadFile => {
@@ -49,7 +53,7 @@ export default function AddFileButton({ currentFolder }) {
         setUploadingFiles(prevUploadingFiles => {
           return prevUploadingFiles.map(uploadFile => {
             if (uploadFile.id === id) {
-              return { ...uploadFile, error: true }
+              return { ...uploadFile, error: true } 
             }
             return uploadFile
           })
@@ -61,7 +65,7 @@ export default function AddFileButton({ currentFolder }) {
             return uploadFile.id !== id
           })
         })
-
+        // the snapshot of what we are uploading as files
         uploadTask.snapshot.ref.getDownloadURL().then(url => {
           database.files
             .where("name", "==", file.name)
