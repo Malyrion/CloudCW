@@ -12,6 +12,8 @@ import CenteredContainer from "./CenteredContainer"
   const [message, setMessage] = useState("")
   const [loading, setLoading] = useState(false)
 
+
+  //function happenes when you uplod the form
   async function handleSubmit(e) {
     e.preventDefault()
 
