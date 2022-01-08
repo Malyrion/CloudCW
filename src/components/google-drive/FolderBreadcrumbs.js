@@ -9,7 +9,7 @@ function FolderBreadcrumbs({currentFolder}) {
   
     return (
         <Breadcrumb className="flex-grow-1 "
-         listProps={{className:"bg-white pl-0 m-0"}}>
+         listProps={{className:"bg-white pl-0 m-2"}}>
            {path.map((folder,index)=>(
                 <Breadcrumb.Item
                 key={folder.id}
